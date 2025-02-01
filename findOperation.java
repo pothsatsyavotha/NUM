@@ -24,22 +24,53 @@ public class findOperation {
         double result = sumThreeNum/3;
         return  result;
     }
-    public static void findGrade(double avg){
-        if (avg >90){
-            System.out.println("A");
+    public static char findGrade(double avg) {
+        if (avg > 90) {
+            return 'A';
+        } else if (avg > 80) {
+            return 'B';
+        } else if (avg > 70) {
+            return 'C';
+        } else if (avg > 60) {
+            return 'D';
+        } else {
+            return 'F';
         }
-        else if(avg >80){
-            System.out.println("B");
+    }
+    public static String schorlarShip(char value){
+        if (value == 'A'){
+            return "you got 100%";
         }
-        else if(avg >70){
-            System.out.println("C");
+        else if(value =='B'){
+            return "You got 70%";
         }
-        else if(avg >60){
-            System.out.println("D");
+        else if (value == 'C'){
+            return "You got 50%";
+        }
+        else if(value == 'D'){
+            return "You got 30%";
         }
         else {
-            System.out.println("F");
+            return "u haven't got scholarship";
         }
+    }
+    public static int SchoolFee (char value){
+        int originalFee = 800;
+        int discount = 0;
+
+        if (value == 'A') {
+            discount = 100;
+        } else if (value == 'B') {
+            discount = 70;
+        } else if (value == 'C') {
+            discount = 50;
+        } else if (value == 'D') {
+            discount = 30;
+        } else {
+            discount = 0;
+        }
+
+        return originalFee - (originalFee * discount / 100);
     }
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -59,7 +90,11 @@ public class findOperation {
         double avg = findAverage(resultOfThree);
         System.out.println(resultOfThree);
         System.out.println("finder average:"+avg);
-        findGrade(avg);
+        System.out.println("your grade is:"+ findGrade(avg));
+        char value = findGrade(avg);
+        System.out.println("your scorlarship :"+ schorlarShip(value));
+
+        System.out.println("your school fee: "+ SchoolFee(value));
     }
 }
 
