@@ -19,11 +19,16 @@ public class WriteAndWriteToFile {
         System.out.println("Your data has input");
         writer.close();
         File file = new File("/home/votha/Documents/text/text.txt");
-        Scanner fileScan = new Scanner(file);
 
-        while (fileScan.hasNext()){
-            String line = fileScan.nextLine();
-            System.out.println(line);
+
+        try(Scanner fileScan = new Scanner(file)){
+                while (fileScan.hasNext()){
+                String line = fileScan.nextLine();
+                System.out.println(line);
+            }
+        }catch (FileNotFoundException e){
+            e.fillInStackTrace();
         }
+
     }
 }
