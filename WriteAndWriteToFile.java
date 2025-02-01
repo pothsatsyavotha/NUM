@@ -42,7 +42,6 @@ class WriteAndReadToFile {
         try {
             // Input data into file
             inputDataToFile();
-
             // Read and display data from file
             readDataFromFile();
         } catch (FileNotFoundException e) {
