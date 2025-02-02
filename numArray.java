@@ -61,17 +61,35 @@ public class numArray {
     }
     public static void readDataFromArray() throws FileNotFoundException {
         File file = new File("/home/votha/Documents/text/text.txt");
-        Scanner read = new  Scanner(file);
+
+        // **Step 1: Count how many numbers are in the file**
+        Scanner countScanner = new Scanner(file);
+        int count = 0;
+        while (countScanner.hasNextInt()) {
+            count++;
+            countScanner.nextInt();
+        }
+        countScanner.close(); // Close scanner after counting
+
+        // **Step 2: Create array with correct size**
+        int[] myData = new int[count];
+
+        // **Step 3: Read data into the array**
+        Scanner read = new Scanner(file);
         int index = 0;
-        int[] myData = new int[0];
-        while (read.hasNext()){
-            myData[index] = data.nextInt();
+        while (read.hasNextInt() && index < myData.length) {
+            myData[index] = read.nextInt();
             index++;
         }
-        for (int v:myData){
-            System.out.println(v);
+        read.close(); // Close scanner after reading
+
+        // **Step 4: Print the array**
+        System.out.println("Data read from file:");
+        for (int num : myData) {
+            System.out.println(num);
         }
     }
+
     public static void main(String[] args) throws FileNotFoundException {
 //        int[] arr = {1,2,3,5};
 //
@@ -136,11 +154,16 @@ public class numArray {
 
         int[] array = cretaeNewArray(3);
 
-        for (int i:array){
-            System.out.println(i);
-        }
+//        for (int i:array){
+//            System.out.println(i);
+//        }
 
         writeDataIntoFile(array);
+        try {
+            readDataFromArray();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + e.getMessage());
+        }
 
     }
 }
